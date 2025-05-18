@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Vs AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+        .upload-area {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        .instructions {
+            background-color: #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        h1 {
+            color: #343a40;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #4e73df;
+            border-color: #4e73df;
+        }
+        .btn-primary:hover {
+            background-color: #2e59d9;
+            border-color: #2e59d9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>The Decline of Search?</h1>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}warning{% endif %} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="upload-area">
+                    <h2 class="mb-4">Upload Your Google History Files</h2>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="search_history" class="form-label">Search History (Takeout/Search/MyActivity.json)</label>
+                            <input type="file" class="form-control" id="search_history" name="search_history" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="chrome_history" class="form-label">Chrome History (Takeout/Chrome/MyActivity.json)</label>
+                            <input type="file" class="form-control" id="chrome_history" name="chrome_history" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Analyze Data</button>
+                    </form>
+                    
+                    <div class="instructions">
+                        <h3>How to get your Google history data:</h3>
+                        <ol>
+                            <li>Go to <a href="https://takeout.google.com/" target="_blank">Google Takeout</a></li>
+                            <li>Click "Deselect all"</li>
+                            <li>Scroll down and select "My Activity"</li>
+                                <ul>
+                                    <li>In My Activity subsection - "Multiple Formats", change the format of Activity records to JSON</li>
+                                    <li>In My Activity subsection - "All activity data included", deselect all and choose only "Chrome" and "Search"</li>
+                                </ul>
+                            </li>
+                            <li>Scroll to the bottom and click "Next step"</li>
+                            <li>Select your delivery method and frequency (one-time export is fine)</li>
+                            <li>Click "Create export"</li>
+                            <li>Wait for Google to prepare your data (you'll receive an email in 5-10 minutes)</li>
+                            <li>Download the ZIP file and extract it</li>
+                            <li>Upload both files above (Takeout/Search/MyActivity.json and Takeout/Chrome/MyActivity.json)</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

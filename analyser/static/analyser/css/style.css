@@ -1,0 +1,36 @@
+/* Custom styles for the Search Vs AI application */
+
+.custom-file-input:lang(en)~.custom-file-label::after {
+    content: "Browse";
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.instructions-step {
+    margin-bottom: 10px;
+}
+
+.upload-area {
+    transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.plot-container img {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.results-container {
+    transition: all 0.3s ease;
+}
+
+.results-container:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}

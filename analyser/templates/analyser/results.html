@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Vs AI - Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 20px;
+            padding-bottom: 40px;
+        }
+        .results-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #343a40;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .plot-container {
+            margin-bottom: 40px;
+        }
+        .plot-title {
+            font-size: 1.5rem;
+            color: #343a40;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .plot-description {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .btn-primary {
+            background-color: #4e73df;
+            border-color: #4e73df;
+        }
+        .btn-primary:hover {
+            background-color: #2e59d9;
+            border-color: #2e59d9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Search Vs AI - Analysis Results</h1>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{% if message.tags %}{{ message.tags }}{% else %}warning{% endif %} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="results-container">
+            <div class="plot-container">
+                <h2 class="plot-title">Total Search Volume Over Time</h2>
+                <div class="plot-description">
+                    <p>This graph shows your total Google search volume over time. The red dashed line indicates when ChatGPT was launched (November 2022), and the green dashed line shows when you first searched for ChatGPT.</p>
+                    <!-- <p>Notice any changes in your search behavior after using AI tools? Many people see a decline in traditional search volume after they start using generative AI tools like ChatGPT, Claude, or Gemini.</p> -->
+                    <p>This visualization helps you understand how your search habits have changed over time, especially in relation to the rise of AI tools.</p>
+                    <p>If the plot is empty, it likely means there's not enough data in your Google account—perhaps because your history has been deleted.</p>
+                </div>
+                {% if search_plot %}
+                <div class="text-center">
+                    <img src="data:image/png;base64,{{ search_plot }}" class="img-fluid" alt="Search Volume Graph">
+                </div>
+                {% else %}
+                <div class="alert alert-warning">
+                    No search history data could be processed. Please make sure you uploaded the correct file.
+                </div>
+                {% endif %}
+            </div>
+            
+            <hr class="my-5">
+            
+            <div class="plot-container">
+                <h2 class="plot-title">AI Tool Usage Over Time</h2>
+                <div class="plot-description">
+                    <p>This graph shows your visits to major AI tools (ChatGPT, Gemini, and Claude) over time, based on your Chrome browsing history. The red line indicates when ChatGPT launched, and the green line shows when you first visited ChatGPT.</p>
+                    <p>This visualization helps you understand your AI tool adoption pattern and how your usage of different platforms has evolved over time.</p>
+                    <p>If the plot is empty, there isn't enough data to show your usage of AI tools. This could be due to a lack of browsing history or the absence of relevant URLs in your Chrome history.</p>
+                </div>
+                {% if chrome_plot %}
+                <div class="text-center">
+                    <img src="data:image/png;base64,{{ chrome_plot }}" class="img-fluid" alt="AI Usage Graph">
+                </div>
+                {% else %}
+                <div class="alert alert-warning">
+                    No Chrome history data could be processed. Please make sure you uploaded the correct file.
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="{% url 'analyser:index' %}" class="btn btn-primary">Upload New Files</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
