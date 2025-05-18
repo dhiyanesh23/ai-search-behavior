@@ -54,13 +54,13 @@ Follow these steps to set up the project:
     python -m venv venv
     ```
 5.  **Activate the Virtual Environment (Optional):**
-    * For Windows:
+    * For Windows (cmd):
         ```bash
         .\venv\Scripts\activate
         ```
-    * For macOS and Linux:
+   * For Windows (git bash):
         ```bash
-        source venv/bin/activate
+        source venv/Scripts/activate
         ```
 6.  **Navigate to the Project Directory:**
     ```bash
