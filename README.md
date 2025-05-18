@@ -47,7 +47,7 @@ Follow these steps to set up the project:
 2.  **Open Git Bash:** Open Git Bash (or your preferred terminal) inside the newly created folder.
 3.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/dhiyanesh23/ai-search-behavior.git](https://github.com/dhiyanesh23/ai-search-behavior.git)
+    git clone https://github.com/dhiyanesh23/ai-search-behavior.git
     ```
 4.  **Create a Virtual Environment (Optional but Recommended):**
     ```bash
