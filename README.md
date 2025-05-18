@@ -58,7 +58,7 @@ Follow these steps to set up the project:
         ```bash
         .\venv\Scripts\activate
         ```
-   * For Windows (git bash):
+    * For Windows (git bash):
         ```bash
         source venv/Scripts/activate
         ```
